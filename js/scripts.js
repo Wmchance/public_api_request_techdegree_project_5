@@ -29,3 +29,35 @@
 //             console.log(element.picture.medium)
 //         });
 //     })
+
+// Base info-card function
+function createInfoCard() {
+    const galleryDiv = document.getElementById('gallery');
+    const cardDiv = document.createElement('div'); //card Div
+    cardDiv.classList.add('card');
+    galleryDiv.appendChild(cardDiv);
+    const imgDiv = document.createElement('div'); //Employee img div
+    imgDiv.classList.add('card-img-container');
+    const imgLink = document.createElement('img');
+    imgLink.classList.add('card-img');
+    imgLink.src = 'london-edited.jpg';
+    imgLink.alt = 'profile picture';
+    imgDiv.appendChild(imgLink);
+    cardDiv.appendChild(imgDiv);
+    const infoDiv = document.createElement('div'); // Employee info div
+    infoDiv.classList.add('card-info-container');
+    const idHeader = document.createElement('h3');
+    idHeader.id = 'name';
+    idHeader.classList.add('card-name', 'cap');
+    idHeader.innerText = 'first name last name';
+    const emailP = document.createElement('p');
+    emailP.classList.add('card-text');
+    emailP.innerText = 'email';
+    const locationP = document.createElement('p');
+    locationP.classList.add('card-text', 'cap');
+    locationP.innerText = 'city, state';
+    infoDiv.appendChild(idHeader);
+    infoDiv.appendChild(emailP);
+    infoDiv.appendChild(locationP);
+    cardDiv.appendChild(infoDiv);
+}
