@@ -163,14 +163,15 @@ function createModal() {
 //         });
 //     })
 
-fetch('https://randomuser.me/api/?results=12')
-    .then(res => res.json())
-    .then(data => {
-        console.log(data.results),
-        data.results.forEach(element => {
-            createInfoCard(element);
-        }),
-        data.results.forEach(element => {
-            createModal();
-        });
-    })
+function fetchUsers(url) {
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.results),
+            data.results.forEach(element => {
+                createInfoCard(element);
+            });
+        })
+}
+
+fetchUsers(url);
