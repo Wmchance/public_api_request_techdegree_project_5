@@ -97,11 +97,16 @@ function createInfoCard(obj) {
     infoDiv.appendChild(emailP);
     infoDiv.appendChild(locationP);
     cardDiv.appendChild(infoDiv);
+    //Event listener added to each card element
+    cardDiv.addEventListener('click', (e) => {
+        console.log('hello');
+    })
 }
 
 function createModal() {
     const docBody = document.getElementsByTagName("BODY")[0]; //Modal Container div
     const modalContainerDiv = document.createElement('div');
+    modalContainerDiv.style.display = 'none'; //Hide modal by default
     modalContainerDiv.classList.add('modal-container');
     docBody.appendChild(modalContainerDiv); 
     const modalDiv = document.createElement('div'); //Modal div
@@ -170,6 +175,9 @@ function fetchUsers(url) {
             console.log(data.results),
             data.results.forEach(element => {
                 createInfoCard(element);
+            }),
+            data.results.forEach(element => {
+                createModal();
             });
         })
 }
