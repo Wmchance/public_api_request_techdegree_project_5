@@ -99,7 +99,8 @@ function createInfoCard(obj) {
     cardDiv.appendChild(infoDiv);
     //Event listener added to each card element
     cardDiv.addEventListener('click', (e) => {
-        console.log('hello');
+        const modalCards = document.getElementsByClassName('modal-container');
+        modalCards[0].style.display = '';
     })
 }
 
@@ -118,6 +119,10 @@ function createModal() {
     closeModalBtn.classList.add('modal-close-btn');
     closeModalBtn.innerHTML = `<strong>X</strong>`; 
     modalDiv.appendChild(closeModalBtn);
+    closeModalBtn.addEventListener('click', (e) => {
+        const modalCards = document.getElementsByClassName('modal-container');
+        modalCards[0].style.display = 'none';
+    })
     const modalInfoContainer = document.createElement('div'); //**Modal Info Container**
     modalInfoContainer.classList.add('modal-info-container')
     const modalImg = document.createElement('img'); //img element
