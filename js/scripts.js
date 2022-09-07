@@ -31,7 +31,42 @@
 //     })
 
 // Base info-card function
-function createInfoCard() {
+// function createInfoCard(element) {
+//     const galleryDiv = document.getElementById('gallery');
+//     const cardDiv = document.createElement('div'); //card Div
+//     cardDiv.classList.add('card');
+//     galleryDiv.appendChild(cardDiv);
+//     const imgDiv = document.createElement('div'); //Employee img div
+//     imgDiv.classList.add('card-img-container');
+//     const imgLink = document.createElement('img');
+//     imgLink.classList.add('card-img');
+//     imgLink.src = 'london-edited.jpg';
+//     imgLink.alt = 'profile picture';
+//     imgDiv.appendChild(imgLink);
+//     cardDiv.appendChild(imgDiv);
+//     const infoDiv = document.createElement('div'); // Employee info div
+//     infoDiv.classList.add('card-info-container');
+//     const idHeader = document.createElement('h3');
+//     idHeader.id = 'name';
+//     idHeader.classList.add('card-name', 'cap');
+//     idHeader.innerText = 'first name last name';
+//     const emailP = document.createElement('p');
+//     emailP.classList.add('card-text');
+//     emailP.innerText = 'email';
+//     const locationP = document.createElement('p');
+//     locationP.classList.add('card-text', 'cap');
+//     locationP.innerText = 'city, state';
+//     infoDiv.appendChild(idHeader);
+//     infoDiv.appendChild(emailP);
+//     infoDiv.appendChild(locationP);
+//     cardDiv.appendChild(infoDiv);
+// }
+
+/*
+* Takes property values from obj, builds information card, and appends card to gallery div
+* @param {obj} obj - contains user information from https://randomuser.me/api/
+*/
+function createInfoCard(obj) {
     const galleryDiv = document.getElementById('gallery');
     const cardDiv = document.createElement('div'); //card Div
     cardDiv.classList.add('card');
@@ -40,7 +75,7 @@ function createInfoCard() {
     imgDiv.classList.add('card-img-container');
     const imgLink = document.createElement('img');
     imgLink.classList.add('card-img');
-    imgLink.src = 'london-edited.jpg';
+    imgLink.src = `${obj.picture.large}`;
     imgLink.alt = 'profile picture';
     imgDiv.appendChild(imgLink);
     cardDiv.appendChild(imgDiv);
@@ -49,15 +84,27 @@ function createInfoCard() {
     const idHeader = document.createElement('h3');
     idHeader.id = 'name';
     idHeader.classList.add('card-name', 'cap');
-    idHeader.innerText = 'first name last name';
+    idHeader.innerText = `${obj.name.first} ${obj.name.last}`;
     const emailP = document.createElement('p');
     emailP.classList.add('card-text');
-    emailP.innerText = 'email';
+    emailP.innerText = `${obj.email}`;
     const locationP = document.createElement('p');
     locationP.classList.add('card-text', 'cap');
-    locationP.innerText = 'city, state';
+    locationP.innerText = `${obj.location.city}, ${obj.location.state}`;
     infoDiv.appendChild(idHeader);
     infoDiv.appendChild(emailP);
     infoDiv.appendChild(locationP);
     cardDiv.appendChild(infoDiv);
 }
+
+/*
+* Fetches information obj for 12 random users and calls createInfoCard(obj) on each to display 
+* the created user info cards in the gallery div
+*/
+fetch('https://randomuser.me/api/?results=12')
+    .then(res => res.json())
+    .then(data => {
+        data.results.forEach(element => {
+            createInfoCard(element);
+        });
+    })
