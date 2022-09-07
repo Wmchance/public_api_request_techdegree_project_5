@@ -25,6 +25,7 @@
 //             console.log(element.name.last),
 //             console.log(element.email),
 //             console.log(element.location.city),
-//             console.log(element.location.state)
+//             console.log(element.location.state),
+//             console.log(element.picture.medium)
 //         });
 //     })
