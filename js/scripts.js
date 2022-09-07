@@ -152,7 +152,7 @@ function createModal(obj) {
     modalInfoContainer.appendChild(modalPhoneNumber);
     const modalAddress = document.createElement('p'); //Address p
     modalAddress.classList.add('modal-text');
-    modalAddress.innerText = `${obj.location.street.number} ${obj.location.street.number}, ${obj.location.city}, ${obj.location.state}, ${obj.location.postcode}`;
+    modalAddress.innerText = `${obj.location.street.number} ${obj.location.street.name}, ${obj.location.city}, ${obj.location.state}, ${obj.location.postcode}`;
     modalInfoContainer.appendChild(modalAddress);
     const modalBirthday = document.createElement('p'); //Birthday p
     modalBirthday.classList.add('modal-text');
