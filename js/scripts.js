@@ -75,22 +75,22 @@ function createInfoCard(obj) {
     galleryDiv.appendChild(cardDiv);
     const imgDiv = document.createElement('div'); //Employee img div
     imgDiv.classList.add('card-img-container');
-    const imgLink = document.createElement('img');
+    const imgLink = document.createElement('img'); //img info
     imgLink.classList.add('card-img');
     imgLink.src = `${obj.picture.large}`;
     imgLink.alt = 'profile picture';
     imgDiv.appendChild(imgLink);
     cardDiv.appendChild(imgDiv);
-    const infoDiv = document.createElement('div'); //Employee info div
+    const infoDiv = document.createElement('div'); //**Employee info div
     infoDiv.classList.add('card-info-container');
-    const idHeader = document.createElement('h3');
+    const idHeader = document.createElement('h3'); //Name info
     idHeader.id = 'name';
     idHeader.classList.add('card-name', 'cap');
     idHeader.innerText = `${obj.name.first} ${obj.name.last}`;
-    const emailP = document.createElement('p');
+    const emailP = document.createElement('p'); //Email info
     emailP.classList.add('card-text');
     emailP.innerText = `${obj.email}`;
-    const locationP = document.createElement('p');
+    const locationP = document.createElement('p'); //location info
     locationP.classList.add('card-text', 'cap');
     locationP.innerText = `${obj.location.city}, ${obj.location.state}`;
     infoDiv.appendChild(idHeader);
@@ -104,7 +104,7 @@ function createInfoCard(obj) {
     })
 }
 
-function createModal() {
+function createModal(obj) {
     const docBody = document.getElementsByTagName("BODY")[0]; //Modal Container div
     const modalContainerDiv = document.createElement('div');
     modalContainerDiv.style.display = 'none'; //Hide modal by default
@@ -119,6 +119,7 @@ function createModal() {
     closeModalBtn.classList.add('modal-close-btn');
     closeModalBtn.innerHTML = `<strong>X</strong>`; 
     modalDiv.appendChild(closeModalBtn);
+    //Close btn eventlistener
     closeModalBtn.addEventListener('click', (e) => {
         const modalCards = document.getElementsByClassName('modal-container');
         modalCards[0].style.display = 'none';
@@ -127,35 +128,35 @@ function createModal() {
     modalInfoContainer.classList.add('modal-info-container')
     const modalImg = document.createElement('img'); //img element
     modalImg.classList.add('modal-img');
-    modalImg.src = 'london-edited.jpg';
+    modalImg.src = `${obj.picture.large}`;
     modalImg.alt = 'profile picture';
     modalInfoContainer.appendChild(modalImg);
     const modalNameHeader = document.createElement('h3'); //Modal Name Header
     modalNameHeader.id = 'name';
     modalNameHeader.classList.add('modal-name', 'cap');
-    modalNameHeader.innerText = 'name';
+    modalNameHeader.innerText = `${obj.name.first} ${obj.name.last}`;
     modalInfoContainer.appendChild(modalNameHeader);
     const modalEmail = document.createElement('p'); //Modal email p
     modalEmail.classList.add('modal-text');
-    modalEmail.innerText = 'email';
+    modalEmail.innerText = `${obj.email}`;
     modalInfoContainer.appendChild(modalEmail);
     const modalLocation = document.createElement('p') //Modal location p
     modalLocation.classList.add('modal-text', 'cap');
-    modalLocation.innerText = 'city';
+    modalLocation.innerText = `${obj.location.city}`;
     modalInfoContainer.appendChild(modalLocation);
     const breakElement = document.createElement('hr'); //Break element 
     modalInfoContainer.appendChild(breakElement);
     const modalPhoneNumber = document.createElement('p'); //Phone number p
     modalPhoneNumber.classList.add('modal-text');
-    modalPhoneNumber.innerText = '(555) 555-5555';
+    modalPhoneNumber.innerText = `${obj.phone}`;
     modalInfoContainer.appendChild(modalPhoneNumber);
     const modalAddress = document.createElement('p'); //Address p
     modalAddress.classList.add('modal-text');
-    modalAddress.innerText = '123 Portland Ave., Portland, OR 97204';
+    modalAddress.innerText = `${obj.location.street.number} ${obj.location.street.number}, ${obj.location.city}, ${obj.location.state}, ${obj.location.postcode}`;
     modalInfoContainer.appendChild(modalAddress);
     const modalBirthday = document.createElement('p'); //Birthday p
     modalBirthday.classList.add('modal-text');
-    modalBirthday.innerText = 'Birthday: 10/21/2015';
+    modalBirthday.innerText = `Birthday: ${obj.dob.date}`;
     modalInfoContainer.appendChild(modalBirthday);
     modalDiv.appendChild(modalInfoContainer);
 }
@@ -182,7 +183,7 @@ function fetchUsers(url) {
                 createInfoCard(element);
             }),
             data.results.forEach(element => {
-                createModal();
+                createModal(element);
             });
         })
 }
