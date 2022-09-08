@@ -198,7 +198,10 @@ function createModal(obj) {
     modalInfoContainer.appendChild(modalAddress);
     const modalBirthday = document.createElement('p'); //Birthday p
     modalBirthday.classList.add('modal-text');
-    modalBirthday.innerText = `Birthday: ${obj.dob.date}`;
+    // modalBirthday.innerText = `Birthday: ${obj.dob.date}`;
+    const dob = obj.dob.date;
+    const dobNew = `${dob.charAt(5)}${dob.charAt(6)}/${dob.charAt(8)}${dob.charAt(9)}/${dob.charAt(0)}${dob.charAt(1)}${dob.charAt(2)}${dob.charAt(3)}`
+    modalBirthday.innerText = `Birthday: ${dobNew}`;
     modalInfoContainer.appendChild(modalBirthday);
     modalDiv.appendChild(modalInfoContainer);
 }
@@ -231,8 +234,3 @@ function fetchUsers(url) {
 }
 
 fetchUsers(url);
-
-//Practice with phone number adjustments
-
-let num1 = "626-772-609";
-console.log(num1);
