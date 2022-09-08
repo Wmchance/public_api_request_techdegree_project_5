@@ -62,7 +62,7 @@
 //     cardDiv.appendChild(infoDiv);
 // }
 
-const url = 'https://randomuser.me/api/?results=12';
+const url = 'https://randomuser.me/api/?results=12&nat=us';
 
 /*
 * Takes property values from obj, builds information card, and appends card to gallery div
@@ -231,3 +231,8 @@ function fetchUsers(url) {
 }
 
 fetchUsers(url);
+
+//Practice with phone number adjustments
+
+let num1 = "626-772-609";
+console.log(num1);
