@@ -100,7 +100,38 @@ function createInfoCard(obj) {
     //Event listener added to each card element
     cardDiv.addEventListener('click', (e) => {
         const modalCards = document.getElementsByClassName('modal-container');
-        modalCards[0].style.display = '';
+        const modalInfoCon = document.getElementsByClassName('modal-info-container');
+        const infoCard = document.getElementsByClassName('card');
+        //modalCards[0].style.display = '';
+        // console.log(e.target);
+        // console.log(e.target.parentElement);
+        // console.log(e.target.parentElement.parentElement);
+        // for (let i=0; i<modalInfoCon.length; i++) {
+        //     console.log(modalInfoCon[i].children[1].textContent);
+        // }
+
+        if(e.target.className === 'card') {
+            console.log(e.target.children[1].children[0].textContent);
+        }
+        if(e.target.className === 'card-img-container') {
+            console.log(e.target.nextElementSibling.children[0].textContent);
+        }
+        if(e.target.className === 'card-img') {
+            console.log(e.target.parentElement.nextElementSibling.children[0].textContent);
+        }
+        if(e.target.className === 'card-info-container') {
+            console.log(e.target.children[0].textContent);
+        }
+        if(e.target.className === 'card-name cap') {
+            console.log(e.target.textContent);
+        }
+        if(e.target.className === 'card-text') {
+            console.log(e.target.previousSibling.textContent);
+        }
+        if(e.target.className === 'card-text cap') {
+            console.log(e.target.previousSibling.previousSibling.textContent);
+        }
+
     })
 }
 
