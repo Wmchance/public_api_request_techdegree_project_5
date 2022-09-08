@@ -188,9 +188,9 @@ function createModal(obj) {
     modalInfoContainer.appendChild(modalLocation);
     const breakElement = document.createElement('hr'); //Break element 
     modalInfoContainer.appendChild(breakElement);
-    const modalPhoneNumber = document.createElement('p'); //Phone number p
+    const modalPhoneNumber = document.createElement('p'); //Cell phone number p
     modalPhoneNumber.classList.add('modal-text');
-    modalPhoneNumber.innerText = `${obj.phone}`;
+    modalPhoneNumber.innerText = `${obj.cell}`;
     modalInfoContainer.appendChild(modalPhoneNumber);
     const modalAddress = document.createElement('p'); //Address p
     modalAddress.classList.add('modal-text');
