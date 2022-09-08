@@ -64,6 +64,41 @@
 
 const url = 'https://randomuser.me/api/?results=12&nat=us';
 
+// Search function
+function createSearchBar() {
+    const searchContainer = document.getElementsByClassName('search-container')[0];
+    const formElement = document.createElement('form'); //Form Element
+    formElement.action = '#';
+    formElement.method = 'get';
+    const input1 = document.createElement('input'); //Input 1
+    input1.type = 'search';
+    input1.id = 'search-input';
+    input1.class = 'search-input';
+    input1.placeholder = 'Search...';
+    const input2 = document.createElement('input'); //Input 2
+    input2.type = 'submit';
+    input2.value = '&#x1F50D;';
+    input2.id = 'search-submit';
+    input2.class = 'search-submit';
+    formElement.appendChild(input1);
+    formElement.appendChild(input2);
+    searchContainer.appendChild(formElement);
+    formElement.addEventListener('submit', (e) => {
+        console.log(input1.value);
+        const cardNameCap = document.getElementsByClassName('card-name cap');
+        for(let i=0; i<cardNameCap.length; i++) {
+            cardNameCap[i].parentElement.parentElement.style.display = 'none';
+            if(cardNameCap[i].textContent.toLowerCase().includes(input1.value)) {
+                e.preventDefault();
+                cardNameCap[i].parentElement.parentElement.style.display = '';
+            }
+            if(input1.value === '') {
+                cardNameCap[i].parentElement.parentElement.style.display = '';
+            }
+        }
+    })
+}
+
 /*
 * Takes property values from obj, builds information card, and appends card to gallery div
 * @param {obj} obj - contains user information from https://randomuser.me/api/
@@ -224,6 +259,7 @@ function fetchUsers(url) {
         .then(res => res.json())
         .then(data => {
             console.log(data.results),
+            createSearchBar(),
             data.results.forEach(element => {
                 createInfoCard(element);
             }),
