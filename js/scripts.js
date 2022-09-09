@@ -254,6 +254,26 @@ function createModal(obj) {
     modalBtnContainer.appendChild(modalPrevBtn);
     modalBtnContainer.appendChild(modalNextBtn);
     modalContainerDiv.appendChild(modalBtnContainer);
+    //Event Listener for 'prev' modal btn
+    modalPrevBtn.addEventListener('click', (e) => {
+        const modalCards = document.getElementsByClassName('modal-container');
+        for(let i=0; i<modalCards.length; i++) {
+            if(modalCards[i].style.display === '' && i>0) {
+                modalCards[i].style.display = 'none';
+                modalCards[i-1].style.display = '';
+            }
+        }
+    })
+    //Event Listener for 'next' modal btn
+    modalNextBtn.addEventListener('click', (e) => {
+        const modalCards = document.getElementsByClassName('modal-container');
+        for(let i=0; i<modalCards.length; i++) {
+            if(modalCards[i].style.display === '' && i<modalCards.length) {
+                modalCards[i].style.display = 'none';
+                modalCards[i+1].style.display = '';
+            }
+        }
+    })
 }
 
 /*
