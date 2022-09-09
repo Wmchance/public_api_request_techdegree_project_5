@@ -267,10 +267,11 @@ function createModal(obj) {
     //Event Listener for 'next' modal btn
     modalNextBtn.addEventListener('click', (e) => {
         const modalCards = document.getElementsByClassName('modal-container');
-        for(let i=0; i<modalCards.length; i++) {
+        for(let i=0; i<modalCards.length-1; i++) {
             if(modalCards[i].style.display === '' && i<modalCards.length) {
                 modalCards[i].style.display = 'none';
                 modalCards[i+1].style.display = '';
+                break;
             }
         }
     })
