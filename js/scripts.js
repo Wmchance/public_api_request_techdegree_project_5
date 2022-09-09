@@ -84,11 +84,11 @@ function createSearchBar() {
     formElement.appendChild(input2);
     searchContainer.appendChild(formElement);
     formElement.addEventListener('submit', (e) => {
-        console.log(input1.value);
+        // console.log(input1.value);
         const cardNameCap = document.getElementsByClassName('card-name cap');
         for(let i=0; i<cardNameCap.length; i++) {
             cardNameCap[i].parentElement.parentElement.style.display = 'none';
-            if(cardNameCap[i].textContent.toLowerCase().includes(input1.value)) {
+            if(cardNameCap[i].textContent.toLowerCase().includes(input1.value.toLowerCase())) {
                 e.preventDefault();
                 cardNameCap[i].parentElement.parentElement.style.display = '';
             }
