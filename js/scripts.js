@@ -76,11 +76,11 @@ function createSearchBar() {
     input1.class = 'search-input';
     input1.placeholder = 'Search...';
     input1.style.boxShadow = "5px 5px 5px CornflowerBlue";
-    const input2 = document.createElement('input'); //Input 2
+    const input2 = document.createElement('button'); //Input 2
     input2.type = 'submit';
     input2.style.backgroundColor = 'Lavender';
     input2.style.boxShadow = "5px 5px 5px CornflowerBlue";
-    input2.value = '&#x1F50D;';
+    input2.innerHTML = '&#x1F50D;';
     input2.id = 'search-submit';
     input2.class = 'search-submit';
     formElement.appendChild(input1);
