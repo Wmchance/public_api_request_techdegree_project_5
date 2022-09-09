@@ -239,6 +239,21 @@ function createModal(obj) {
     modalBirthday.innerText = `Birthday: ${dobNew}`;
     modalInfoContainer.appendChild(modalBirthday);
     modalDiv.appendChild(modalInfoContainer);
+    const modalBtnContainer = document.createElement('div'); //Container for modal search buttons
+    modalBtnContainer.classList.add('modal-btn-container');
+    const modalPrevBtn = document.createElement('button'); //Modal Prev btn
+    modalPrevBtn.type = 'button';
+    modalPrevBtn.id = 'modal-prev'; 
+    modalPrevBtn.classList.add('modal-prev', 'btn');
+    modalPrevBtn.innerText = 'Prev';
+    const modalNextBtn = document.createElement('button'); //Modal Next btn
+    modalNextBtn.type = 'button';
+    modalNextBtn.id = 'modal-next'; 
+    modalNextBtn.classList.add('modal-next', 'btn');
+    modalNextBtn.innerText = 'Next';
+    modalBtnContainer.appendChild(modalPrevBtn);
+    modalBtnContainer.appendChild(modalNextBtn);
+    modalContainerDiv.appendChild(modalBtnContainer);
 }
 
 /*
