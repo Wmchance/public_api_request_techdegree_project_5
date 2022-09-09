@@ -89,14 +89,18 @@ function createSearchBar() {
     formElement.addEventListener('submit', (e) => {
         // console.log(input1.value);
         const cardNameCap = document.getElementsByClassName('card-name cap');
+        const modalCards = document.getElementsByClassName('modal-container');
         for(let i=0; i<cardNameCap.length; i++) {
             cardNameCap[i].parentElement.parentElement.style.display = 'none';
             if(cardNameCap[i].textContent.toLowerCase().includes(input1.value.toLowerCase())) {
                 e.preventDefault();
                 cardNameCap[i].parentElement.parentElement.style.display = '';
+            } else {
+                modalCards[i].classList.remove('selected');
             }
             if(input1.value === '') {
                 cardNameCap[i].parentElement.parentElement.style.display = '';
+                modalCards[i].classList.add('selected');
             }
         }
     })
@@ -136,11 +140,11 @@ function createInfoCard(obj) {
     infoDiv.appendChild(emailP);
     infoDiv.appendChild(locationP);
     cardDiv.appendChild(infoDiv);
-    //Event listener added to each card element
+    //Event listener added to each card element to bring up modal
     cardDiv.addEventListener('click', (e) => {
         const modalCards = document.getElementsByClassName('modal-container');
         const modalInfoCon = document.getElementsByClassName('modal-info-container');
-        const infoCard = document.getElementsByClassName('card');
+        //const infoCard = document.getElementsByClassName('card');
 
         for(let i=0; i<modalInfoCon.length; i++) {
             if(e.target.className === 'card') {
@@ -187,7 +191,7 @@ function createModal(obj) {
     const docBody = document.getElementsByTagName("BODY")[0]; //Modal Container div
     const modalContainerDiv = document.createElement('div');
     modalContainerDiv.style.display = 'none'; //Hide modal by default
-    modalContainerDiv.classList.add('modal-container');
+    modalContainerDiv.classList.add('modal-container', 'selected');
     docBody.appendChild(modalContainerDiv); 
     const modalDiv = document.createElement('div'); //Modal div
     modalDiv.classList.add('modal');
@@ -266,7 +270,7 @@ function createModal(obj) {
     modalContainerDiv.appendChild(modalBtnContainer);
     //Event Listener for 'prev' modal btn
     modalPrevBtn.addEventListener('click', (e) => {
-        const modalCards = document.getElementsByClassName('modal-container');
+        const modalCards = document.getElementsByClassName('modal-container selected');
         for(let i=0; i<modalCards.length; i++) {
             if(modalCards[i].style.display === '' && i>0) {
                 modalCards[i].style.display = 'none';
@@ -276,7 +280,7 @@ function createModal(obj) {
     })
     //Event Listener for 'next' modal btn
     modalNextBtn.addEventListener('click', (e) => {
-        const modalCards = document.getElementsByClassName('modal-container');
+        const modalCards = document.getElementsByClassName('modal-container selected');
         for(let i=0; i<modalCards.length; i++) {
             if(modalCards[i].style.display === '' && i<modalCards.length-1) {
                 modalCards[i].style.display = 'none';
