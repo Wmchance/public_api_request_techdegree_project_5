@@ -75,8 +75,11 @@ function createSearchBar() {
     input1.id = 'search-input';
     input1.class = 'search-input';
     input1.placeholder = 'Search...';
+    input1.style.boxShadow = "5px 5px 5px CornflowerBlue";
     const input2 = document.createElement('input'); //Input 2
     input2.type = 'submit';
+    input2.style.backgroundColor = 'Lavender';
+    input2.style.boxShadow = "5px 5px 5px CornflowerBlue";
     input2.value = '&#x1F50D;';
     input2.id = 'search-submit';
     input2.class = 'search-submit';
@@ -107,6 +110,7 @@ function createInfoCard(obj) {
     const galleryDiv = document.getElementById('gallery');
     const cardDiv = document.createElement('div'); //Card Div
     cardDiv.classList.add('card');
+    cardDiv.style.boxShadow = "10px 10px 10px CornflowerBlue";
     galleryDiv.appendChild(cardDiv);
     const imgDiv = document.createElement('div'); //Employee img div
     imgDiv.classList.add('card-img-container');
@@ -246,11 +250,17 @@ function createModal(obj) {
     modalPrevBtn.id = 'modal-prev'; 
     modalPrevBtn.classList.add('modal-prev', 'btn');
     modalPrevBtn.innerText = 'Prev';
+    modalPrevBtn.style.backgroundColor = 'Lavender';
+    modalPrevBtn.style.boxShadow = "5px 5px 5px CornflowerBlue";
+    modalPrevBtn.style.color = 'black';
     const modalNextBtn = document.createElement('button'); //Modal Next btn
     modalNextBtn.type = 'button';
     modalNextBtn.id = 'modal-next'; 
     modalNextBtn.classList.add('modal-next', 'btn');
     modalNextBtn.innerText = 'Next';
+    modalNextBtn.style.backgroundColor = 'Lavender';
+    modalNextBtn.style.boxShadow = "5px 5px 5px CornflowerBlue";
+    modalNextBtn.style.color = 'black';
     modalBtnContainer.appendChild(modalPrevBtn);
     modalBtnContainer.appendChild(modalNextBtn);
     modalContainerDiv.appendChild(modalBtnContainer);
