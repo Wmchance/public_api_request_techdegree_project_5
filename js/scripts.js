@@ -22,7 +22,9 @@ function fetchUsers(url) {
 
 fetchUsers(url);
 
-// Search function
+/*
+* Search Function
+*/
 function createSearchBar() {
     const searchContainer = document.getElementsByClassName('search-container')[0];
     const formElement = document.createElement('form'); //Form Element
@@ -83,50 +85,8 @@ function createInfoCard(obj) {
     infoDiv.appendChild(locationP);
     cardDiv.appendChild(infoDiv);
     //Event listener added to each card element to bring up modal
-    cardDiv.addEventListener('click', (e) => {
-        const modalCards = document.getElementsByClassName('modal-container');
-        const modalInfoCon = document.getElementsByClassName('modal-info-container');
-        //const infoCard = document.getElementsByClassName('card');
-
-        for(let i=0; i<modalInfoCon.length; i++) {
-            if(e.target.className === 'card') {
-                if(e.target.children[1].children[0].textContent === modalInfoCon[i].children[1].textContent) {
-                    modalCards[i].style.display = '';
-                };
-            }
-            if(e.target.className === 'card-img-container') {
-                if(e.target.nextElementSibling.children[0].textContent === modalInfoCon[i].children[1].textContent) {
-                    modalCards[i].style.display = '';
-                };
-            }
-            if(e.target.className === 'card-img') {
-                if(e.target.parentElement.nextElementSibling.children[0].textContent === modalInfoCon[i].children[1].textContent) {
-                    modalCards[i].style.display = '';
-                };
-            }
-            if(e.target.className === 'card-info-container') {
-                if(e.target.children[0].textContent === modalInfoCon[i].children[1].textContent) {
-                    modalCards[i].style.display = '';
-                };
-            }
-            if(e.target.className === 'card-name cap') {
-                if(e.target.textContent === modalInfoCon[i].children[1].textContent) {
-                    modalCards[i].style.display = '';
-                };
-            }
-            if(e.target.className === 'card-text') {
-                if(e.target.previousSibling.textContent === modalInfoCon[i].children[1].textContent) {
-                    modalCards[i].style.display = '';
-                };
-            }
-            if(e.target.className === 'card-text cap') {
-                if(e.target.previousSibling.previousSibling.textContent === modalInfoCon[i].children[1].textContent) {
-                    modalCards[i].style.display = '';
-                };
-            }
-        }
-
-    })
+    
+    openModalEventListener(cardDiv);
 }
 
 function createModal(obj) {
@@ -263,5 +223,50 @@ function searchEventListener(formElement, input1) {
                 modalCards[i].classList.add('selected');
             }
         }
+    })
+}
+function openModalEventListener(cardDiv) {
+    cardDiv.addEventListener('click', (e) => {
+        const modalCards = document.getElementsByClassName('modal-container');
+        const modalInfoCon = document.getElementsByClassName('modal-info-container');
+
+        for(let i=0; i<modalInfoCon.length; i++) {
+            if(e.target.className === 'card') {
+                if(e.target.children[1].children[0].textContent === modalInfoCon[i].children[1].textContent) {
+                    modalCards[i].style.display = '';
+                };
+            }
+            if(e.target.className === 'card-img-container') {
+                if(e.target.nextElementSibling.children[0].textContent === modalInfoCon[i].children[1].textContent) {
+                    modalCards[i].style.display = '';
+                };
+            }
+            if(e.target.className === 'card-img') {
+                if(e.target.parentElement.nextElementSibling.children[0].textContent === modalInfoCon[i].children[1].textContent) {
+                    modalCards[i].style.display = '';
+                };
+            }
+            if(e.target.className === 'card-info-container') {
+                if(e.target.children[0].textContent === modalInfoCon[i].children[1].textContent) {
+                    modalCards[i].style.display = '';
+                };
+            }
+            if(e.target.className === 'card-name cap') {
+                if(e.target.textContent === modalInfoCon[i].children[1].textContent) {
+                    modalCards[i].style.display = '';
+                };
+            }
+            if(e.target.className === 'card-text') {
+                if(e.target.previousSibling.textContent === modalInfoCon[i].children[1].textContent) {
+                    modalCards[i].style.display = '';
+                };
+            }
+            if(e.target.className === 'card-text cap') {
+                if(e.target.previousSibling.previousSibling.textContent === modalInfoCon[i].children[1].textContent) {
+                    modalCards[i].style.display = '';
+                };
+            }
+        }
+
     })
 }
