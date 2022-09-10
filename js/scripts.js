@@ -291,6 +291,16 @@ function createModal(obj) {
     })
 }
 
+function createErrorMsg(info) {
+    const galleryDiv = document.getElementById('gallery');
+    const errorDiv = document.createElement('div'); //Error Div
+    const errorMsg = document.createElement('h1'); //Message header
+    errorMsg.innerText = 'Looks like there was an error. Please try refreshing the page.';
+    errorDiv.appendChild(errorMsg); 
+    galleryDiv.appendChild(errorDiv);
+    console.log(info);
+}
+
 /*
 * Fetches information obj for 12 random users and calls createInfoCard(obj) on each to display 
 * the created user info cards in the gallery div
@@ -317,6 +327,7 @@ function fetchUsers(url) {
                 createModal(element);
             });
         })
+        .catch(error => createErrorMsg(error))
 }
 
 fetchUsers(url);
