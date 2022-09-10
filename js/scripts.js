@@ -46,7 +46,7 @@ function createSearchBar() {
     formElement.appendChild(input2);
     searchContainer.appendChild(formElement);
     
-    searchEventListener(formElement, input1);
+    searchEventListener(formElement, input1); // Event Listener to search for employees by name
 }
 
 /*
@@ -84,7 +84,7 @@ function createInfoCard(obj) {
     infoDiv.appendChild(locationP);
     cardDiv.appendChild(infoDiv);
     
-    openModalEventListener(cardDiv);
+    openModalEventListener(cardDiv); //Event Listener to open modal when employee cards are clicked
 }
 
 function createModal(obj) {
@@ -161,9 +161,9 @@ function createModal(obj) {
     modalBtnContainer.appendChild(modalNextBtn);
     modalContainerDiv.appendChild(modalBtnContainer);
 
-    closeModalEventListener(closeModalBtn);
-    modalPrevBtnEventListener(modalPrevBtn);
-    modalNextBtnEventListener(modalNextBtn);
+    closeModalEventListener(closeModalBtn); // Event listener to close modal
+    modalPrevBtnEventListener(modalPrevBtn); // Event Listener to navigate to prev modal window
+    modalNextBtnEventListener(modalNextBtn); // Event Listener to navigate to next modal window
 }
 
 function createErrorMsg(info) {
