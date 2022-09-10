@@ -8,7 +8,6 @@ function fetchUsers(url) {
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            console.log(data.results),
             createSearchBar(),
             data.results.forEach(element => {
                 createInfoCard(element);
@@ -84,7 +83,6 @@ function createInfoCard(obj) {
     infoDiv.appendChild(emailP);
     infoDiv.appendChild(locationP);
     cardDiv.appendChild(infoDiv);
-    //Event listener added to each card element to bring up modal
     
     openModalEventListener(cardDiv);
 }
@@ -104,13 +102,6 @@ function createModal(obj) {
     closeModalBtn.classList.add('modal-close-btn');
     closeModalBtn.innerHTML = `<strong>X</strong>`; 
     modalDiv.appendChild(closeModalBtn);
-    //Close btn eventlistener
-    closeModalBtn.addEventListener('click', (e) => {
-        const modalCards = document.getElementsByClassName('modal-container');
-        for(let i=0; i<modalCards.length; i++) {
-            modalCards[i].style.display = 'none';
-        }
-    })
     const modalInfoContainer = document.createElement('div'); //**Modal Info Container**
     modalInfoContainer.classList.add('modal-info-container')
     const modalImg = document.createElement('img'); //img element
@@ -143,7 +134,6 @@ function createModal(obj) {
     modalInfoContainer.appendChild(modalAddress);
     const modalBirthday = document.createElement('p'); //Birthday p
     modalBirthday.classList.add('modal-text');
-    // modalBirthday.innerText = `Birthday: ${obj.dob.date}`;
     const dob = obj.dob.date;
     const dobNew = `${dob.charAt(5)}${dob.charAt(6)}/${dob.charAt(8)}${dob.charAt(9)}/${dob.charAt(0)}${dob.charAt(1)}${dob.charAt(2)}${dob.charAt(3)}`
     modalBirthday.innerText = `Birthday: ${dobNew}`;
@@ -170,27 +160,10 @@ function createModal(obj) {
     modalBtnContainer.appendChild(modalPrevBtn);
     modalBtnContainer.appendChild(modalNextBtn);
     modalContainerDiv.appendChild(modalBtnContainer);
-    //Event Listener for 'prev' modal btn
-    modalPrevBtn.addEventListener('click', (e) => {
-        const modalCards = document.getElementsByClassName('modal-container selected');
-        for(let i=0; i<modalCards.length; i++) {
-            if(modalCards[i].style.display === '' && i>0) {
-                modalCards[i].style.display = 'none';
-                modalCards[i-1].style.display = '';
-            }
-        }
-    })
-    //Event Listener for 'next' modal btn
-    modalNextBtn.addEventListener('click', (e) => {
-        const modalCards = document.getElementsByClassName('modal-container selected');
-        for(let i=0; i<modalCards.length; i++) {
-            if(modalCards[i].style.display === '' && i<modalCards.length-1) {
-                modalCards[i].style.display = 'none';
-                modalCards[i+1].style.display = '';
-                break;
-            }
-        }
-    })
+
+    closeModalEventListener(closeModalBtn);
+    modalPrevBtnEventListener(modalPrevBtn);
+    modalNextBtnEventListener(modalNextBtn);
 }
 
 function createErrorMsg(info) {
@@ -206,6 +179,7 @@ function createErrorMsg(info) {
 /*
 * Event Listeners
 */
+// Search for employees by name
 function searchEventListener(formElement, input1) {
     formElement.addEventListener('submit', (e) => {
         const cardNameCap = document.getElementsByClassName('card-name cap');
@@ -225,6 +199,8 @@ function searchEventListener(formElement, input1) {
         }
     })
 }
+
+// Open Modals when employee clicked
 function openModalEventListener(cardDiv) {
     cardDiv.addEventListener('click', (e) => {
         const modalCards = document.getElementsByClassName('modal-container');
@@ -268,5 +244,42 @@ function openModalEventListener(cardDiv) {
             }
         }
 
+    })
+}
+
+// Modal close button Event Listener
+function closeModalEventListener(closeModalBtn) {
+    closeModalBtn.addEventListener('click', (e) => {
+        const modalCards = document.getElementsByClassName('modal-container');
+        for(let i=0; i<modalCards.length; i++) {
+            modalCards[i].style.display = 'none';
+        }
+    })
+}
+
+//Event Listener for 'prev' modal btn
+function modalPrevBtnEventListener(modalPrevBtn) {
+    modalPrevBtn.addEventListener('click', (e) => {
+        const modalCards = document.getElementsByClassName('modal-container selected');
+        for(let i=0; i<modalCards.length; i++) {
+            if(modalCards[i].style.display === '' && i>0) {
+                modalCards[i].style.display = 'none';
+                modalCards[i-1].style.display = '';
+            }
+        }
+    })
+}
+
+//Event Listener for 'next' modal btn
+function modalNextBtnEventListener(modalNextBtn) {
+    modalNextBtn.addEventListener('click', (e) => {
+        const modalCards = document.getElementsByClassName('modal-container selected');
+        for(let i=0; i<modalCards.length; i++) {
+            if(modalCards[i].style.display === '' && i<modalCards.length-1) {
+                modalCards[i].style.display = 'none';
+                modalCards[i+1].style.display = '';
+                break;
+            }
+        }
     })
 }
