@@ -87,6 +87,10 @@ function createInfoCard(obj) {
     openModalEventListener(cardDiv); //Event Listener to open modal when employee cards are clicked
 }
 
+/*
+* Takes property values from obj, builds modals and appends them to the document body
+* @param {obj} obj - contains user information from https://randomuser.me/api/
+*/
 function createModal(obj) {
     const docBody = document.getElementsByTagName("BODY")[0]; //Modal Container div
     const modalContainerDiv = document.createElement('div');
