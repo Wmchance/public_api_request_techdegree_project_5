@@ -64,6 +64,24 @@
 
 const url = 'https://randomuser.me/api/?results=12&nat=us';
 
+function fetchUsers(url) {
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.results),
+            createSearchBar(),
+            data.results.forEach(element => {
+                createInfoCard(element);
+            }),
+            data.results.forEach(element => {
+                createModal(element);
+            });
+        })
+        .catch(error => createErrorMsg(error))
+}
+
+fetchUsers(url);
+
 // Search function
 function createSearchBar() {
     const searchContainer = document.getElementsByClassName('search-container')[0];
@@ -314,20 +332,3 @@ function createErrorMsg(info) {
 //         });
 //     })
 
-function fetchUsers(url) {
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data.results),
-            createSearchBar(),
-            data.results.forEach(element => {
-                createInfoCard(element);
-            }),
-            data.results.forEach(element => {
-                createModal(element);
-            });
-        })
-        .catch(error => createErrorMsg(error))
-}
-
-fetchUsers(url);
